@@ -40,10 +40,10 @@ REM Unit tests
 call dotnet test MSTestMoqExampleTests\MSTestMoqExampleTests.csproj --configuration %config% --no-build
 if not "%errorlevel%"=="0" goto failure
 
-REM Package
-mkdir %cd%\..\artifacts
-call dotnet pack MSTestMoqExample --configuration %config% %packversionsuffix% --output %cd%\..\artifacts
-if not "%errorlevel%"=="0" goto failure
+:REM Package
+:mkdir %cd%\..\artifacts
+:call dotnet pack MSTestMoqExample --configuration %config% %packversionsuffix% --output %cd%\..\artifacts
+:if not "%errorlevel%"=="0" goto failure
 
 :success
 exit 0
