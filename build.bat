@@ -31,20 +31,17 @@ call dotnet restore
 if not "%errorlevel%"=="0" goto failure
 
 REM Build
-call "%msbuild%" CleanArchitecture.sln /p:Configuration="%config%" /m /v:M /fl /flp:LogFile=msbuild.log;Verbosity=Normal /nr:false
+call "%msbuild%" MSTestMoqExample.sln /p:Configuration="%config%" /m /v:M /fl /flp:LogFile=msbuild.log;Verbosity=Normal /nr:false
 REM call dotnet build --configuration %config%
 if not "%errorlevel%"=="0" goto failure
 
-cd src
-REM %cd%
-
 REM Unit tests
-call dotnet test CleanArchitecture.Test\CleanArchitecture.Test.csproj --configuration %config% --no-build
+call dotnet test MSTestMoqExampleTests\MSTestMoqExampleTests.csproj --configuration %config% --no-build
 if not "%errorlevel%"=="0" goto failure
 
 REM Package
 mkdir %cd%\..\artifacts
-call dotnet pack CleanArchitecture.Core --configuration %config% %packversionsuffix% --output %cd%\..\artifacts
+call dotnet pack MSTestMoqExample --configuration %config% %packversionsuffix% --output %cd%\..\artifacts
 if not "%errorlevel%"=="0" goto failure
 
 :success
