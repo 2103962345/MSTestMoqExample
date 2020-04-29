@@ -28,8 +28,7 @@ REM (optional) build.bat is in the root of our repo, cd to the correct folder wh
 
 REM Restore
 call dotnet restore
-cd %nuget%
-call %nuget% restore MSTestMoqExample.sln
+call "C:\temp\nuget.exe" restore MSTestMoqExample.sln
 if not "%errorlevel%"=="0" goto failure
 
 REM Build
