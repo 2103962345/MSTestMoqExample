@@ -36,7 +36,7 @@ if not "%errorlevel%"=="0" goto failure
 
 cd MSTestMoqExampleTests
 echo Unit tests
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe bin\%config%\MSTestMoqExampleTests.dll
+"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe" bin\%config%\MSTestMoqExampleTests.dll
 
 cd ..\..
 
