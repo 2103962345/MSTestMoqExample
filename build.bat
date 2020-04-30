@@ -26,24 +26,24 @@ REM %msbuild%
 REM (optional) build.bat is in the root of our repo, cd to the correct folder where sources/projects are
 
 
-REM Restore
-call dotnet restore
+echo Restore
 call "C:\temp\nuget.exe" restore MSTestMoqExample.sln
 if not "%errorlevel%"=="0" goto failure
 
-REM Build
+echo Build
 call "%msbuild%" MSTestMoqExample.sln /p:Configuration="%config%" /m /v:M /fl /flp:LogFile=msbuild.log;Verbosity=Normal /nr:false
-REM call dotnet build --configuration %config%
 if not "%errorlevel%"=="0" goto failure
 
-REM Unit tests
-call dotnet test MSTestMoqExampleTests\MSTestMoqExampleTests.csproj --configuration %config% --no-build
-if not "%errorlevel%"=="0" goto failure
+cd MSTestMoqExampleTests
+echo Unit tests
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe bin\%config%\MSTestMoqExampleTests.dll
 
-:REM Package
-:mkdir %cd%\..\artifacts
-:call dotnet pack MSTestMoqExample --configuration %config% %packversionsuffix% --output %cd%\..\artifacts
-:if not "%errorlevel%"=="0" goto failure
+cd ..\..
+
+echo Pack
+mkdir Build
+call "C:\temp\nuget.exe" pack "MSTestMoqExample\MSTestMoqExample.csproj" -Symbols -OutputDirectory Build -Properties Configuration=%config%;version="%version%"
+if not "%errorlevel%"=="0" goto failure
 
 :success
 exit 0
