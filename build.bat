@@ -27,7 +27,7 @@ REM (optional) build.bat is in the root of our repo, cd to the correct folder wh
 
 
 echo Restore
-call %nuget% restore MSTestMoqExample.sln
+call nuget restore MSTestMoqExample.sln
 if not "%errorlevel%"=="0" goto failure
 
 echo Build
@@ -42,7 +42,7 @@ cd ..
 
 echo Pack
 mkdir Build
-call %nuget% pack "MSTestMoqExample\MSTestMoqExample.csproj" -Symbols -OutputDirectory Build -Properties Configuration=%config%;version="%version%"
+call nuget pack "MSTestMoqExample\MSTestMoqExample.csproj" -Symbols -OutputDirectory Build -Properties Configuration=%config%;version="%version%"
 if not "%errorlevel%"=="0" goto failure
 
 :success
