@@ -31,7 +31,7 @@ call nuget restore MSTestMoqExample.sln
 if not "%errorlevel%"=="0" goto failure
 
 echo Build
-call "%msbuild%" MSTestMoqExample.sln /p:Configuration="%config%" /m /v:M /fl /flp:LogFile=msbuild.log;Verbosity=Normal /nr:false
+call msbuild MSTestMoqExample.sln /p:Configuration="%config%" /m /v:M /fl /flp:LogFile=msbuild.log;Verbosity=Normal /nr:false
 if not "%errorlevel%"=="0" goto failure
 
 cd MSTestMoqExampleTests
