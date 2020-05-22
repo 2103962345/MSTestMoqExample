@@ -45,6 +45,8 @@ mkdir Build
 call nuget pack "MSTestMoqExample\MSTestMoqExample.csproj" -Symbols -OutputDirectory Build -Properties Configuration=%config%;version="%version%"
 if not "%errorlevel%"=="0" goto failure
 
+nuget push MSTestMoqExample.1.0.0.symbols.nupkg 0a45457c-55d9-4608-a3c8-6799b67185d8 -Source https://eu.myget.org/F/non-mirror/symbols/api/v2/package
+
 :success
 exit 0
 
