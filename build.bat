@@ -46,7 +46,7 @@ call nuget pack "MSTestMoqExample\MSTestMoqExample.csproj" -Symbols -OutputDirec
 if not "%errorlevel%"=="0" goto failure
 
 call nuget push "Build\MSTestMoqExample.1.0.0.symbols.nupkg" 0a45457c-55d9-4608-a3c8-6799b67185d8 -Source https://eu.myget.org/F/non-mirror/symbols/api/v2/package
-
+ call nuget help v
 :success
 exit 0
 
